@@ -23,6 +23,9 @@
    (equal (xmlgen '(h1 "Title")) "<h1>Title</h1>")
    (equal (xmlgen '(h1 :class "something" "hi"))
         "<h1 class=\"something\">hi</h1>")
+   (equal (xmlgen '(div (p "Escaped: &") (!unescape (p "Unescaped: &") (!escape
+                                                                        (p "& escaped")))))
+          "<div><p>Escaped: &amp;</p><p>Unescaped: &</p><p>&amp; escaped</p></div>")
    (equal (xmlgen '(p "hello" "again")) "<p>helloagain</p>")
    ("more complex"
     (equal (xmlgen

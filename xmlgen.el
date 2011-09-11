@@ -84,17 +84,24 @@ elements content.")
          (let ((el (car xml)))
            (unless (symbolp el)
              (error "Element must be a symbol (got '%S')." el))
-           (setq el (symbol-name el))
-           (concat "<" el (xmlgen-attr-to-string attrs)
-                   (if (> (length xml) 1)
-                       (concat ">" (mapconcat
-                                    (lambda (s) (xmlgen s el (1+ level)))
-                                    (if xmlgen-escape-elm-vals
-                                        (mapcar 'xmlgen-string-escape (cdr xml))
-                                      (cdr xml))
-                                    "")
-                               "</" el ">")
-                       "/>"))))))))
+           (if (member el '(!unescape !escape))
+               (let ((xmlgen-escape-elm-vals (if (equal '!escape el) t nil)))
+                 (mapconcat
+                  (lambda (s) (xmlgen s in-elm (1+ level)))
+                  (cdr xml)
+                  ""))
+             (progn
+                 (setq el (symbol-name el))
+                 (concat "<" el (xmlgen-attr-to-string attrs)
+                         (if (> (length xml) 1)
+                             (concat ">" (mapconcat
+                                          (lambda (s) (xmlgen s el (1+ level)))
+                                          (if xmlgen-escape-elm-vals
+                                              (mapcar 'xmlgen-string-escape (cdr xml))
+                                            (cdr xml))
+                                          "")
+                                     "</" el ">")
+                           "/>"))))))))))
 
 (defun xmlgen-string-escape (string)
   "Escape STRING for inclusion in some XML."
