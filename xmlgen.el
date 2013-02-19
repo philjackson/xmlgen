@@ -1,4 +1,4 @@
-;;; xml-gen.el --- A DSL for generating XML.
+;;; xmlgen.el --- A DSL for generating XML.
 
 ;; Copyright (C) 2008 Philip Jackson
 
@@ -155,3 +155,5 @@ the plist and the plist."
     (list nlist plist)))
 
 (provide 'xmlgen)
+
+;;; xmlgen.el ends here
