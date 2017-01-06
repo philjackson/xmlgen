@@ -25,3 +25,10 @@ produces this (though wrapped):
         <p>more text</p>
       </body>
     </html>
+
+To run the unit tests, run from the directory where the repository is checked
+out:
+
+``` shell
+emacs -Q -batch -L . -l xmlgen-test.el -f ert-run-tests-batch-and-exit
+```
