@@ -84,7 +84,7 @@ IN-ELM is ignored.  LEVEL is the element level and defaults to 0."
        (cl-destructuring-bind (xml attrs) (xmlgen-extract-plist form)
          (let ((el (car xml)))
            (unless (symbolp el)
-             (error "Element must be a symbol (got '%S')" el))
+             (error "Element must be a symbol (got %S)" el))
            (if (member el '(!unescape !escape))
                (let ((xmlgen-escape-elm-vals (if (equal '!escape el) t nil)))
                  (mapconcat
