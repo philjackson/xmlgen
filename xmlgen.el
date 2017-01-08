@@ -57,10 +57,10 @@
 (require 'cl-lib)
 
 (defvar xmlgen-escape-attribute-vals t
-  "When non-nil xmlgen will escape the characters <>'\"&' in an attribute value.")
+  "When non-nil xmlgen will escape the characters <>\\='\"&' in an attribute value.")
 
 (defvar xmlgen-escape-elm-vals t
-  "When non-nil xmlgen will escape the characters <>'\"&' in an elements content.")
+  "When non-nil xmlgen will escape the characters <>\\='\"&' in an elements content.")
 
 (defvar xmlgen-escapees
   '(("&"  . "&amp;")
