@@ -52,7 +52,7 @@
 ;;   </body>
 ;; </html>
 
-(eval-when-compile (require 'cl))
+(require 'cl-lib)
 
 (defvar xmlgen-escape-attribute-vals t
   "When non-nil xmlgen will escape the characters <>'\"&' in an
@@ -80,7 +80,7 @@ elements content.")
       ((numberp form) (number-to-string form))
       ((stringp form) form)
       ((listp form)
-       (destructuring-bind (xml attrs) (xmlgen-extract-plist form)
+       (cl-destructuring-bind (xml attrs) (xmlgen-extract-plist form)
          (let ((el (car xml)))
            (unless (symbolp el)
              (error "Element must be a symbol (got '%S')." el))
